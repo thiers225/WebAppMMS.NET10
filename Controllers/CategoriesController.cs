@@ -30,6 +30,8 @@ namespace WebAppMMS.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            ViewBag.Action = "edit";
+
             return View(category);
         }
 
@@ -47,10 +49,14 @@ namespace WebAppMMS.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            ViewBag.Action = "add";
+
             return View(category);
             
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(int categoryId)
         {
             CategoriesRepository.DeleteCategory(categoryId);

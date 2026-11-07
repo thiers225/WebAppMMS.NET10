@@ -22,11 +22,16 @@
                     <td>@category.Name</td>
                     <td>@category.Description</td>
                     <td><a class="btn btn-link" asp-controller="categories" asp-action="edit" asp-route-id="@category.CategoryId">Modifier</a></td>
-                    <td><a class="btn btn-link" asp-controller="categories" asp-action="delete" asp-route-categoryid="@category.CategoryId" onclick="return confirmDelete()">Supprimer</a></td>
+                   <td>
+                     <form method="post" asp-controller="categories" asp-action="delete" asp-route-categoryId="@category.CategoryId" style="display:inline">
+                        <button type="submit" class="btn btn-link" onclick="return confirmDelete()">Supprimer</button>
+                    </form>
+                   </td>
                 </tr>
              }
         </tbody>
     </table>
+}
 
     <br />
     <a class="btn btn-primary" asp-controller="categories" asp-action="add">Ajouter</a>
@@ -39,5 +44,4 @@
             }
         </script>
     }
-}
   

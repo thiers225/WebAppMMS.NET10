@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebAppMMS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1daa82ca60b1c8df2aac95ff531289dd757bcb05")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51aa0c09a0e97221dfe2b6d648ba20907bbd6b5d")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebAppMMS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebAppMMS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

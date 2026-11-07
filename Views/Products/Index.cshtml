@@ -1,0 +1,50 @@
+
+@model List<Product>
+
+@section title{
+    <h1>Produits</h1>
+}
+
+@if(Model != null && Model.Count() > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Categorie</th>
+                <th>Nom du produit</th>
+                <th>Prix</th>
+                <th>Quantite</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var product in Model){
+                <tr>
+                    <td>@product.Category?.Name</td>
+                    <td>@product.Name</td>
+                    <td>@product.Price?.ToString("c")</td>
+                    <td>@product.Quantity</td>
+                    <td><a class="btn btn-link" asp-controller="products" asp-action="edit" asp-route-id="@product.ProductId">Modifier</a></td>
+                    <td>
+                        <form method="post" asp-controller="products" asp-action="delete" asp-route-id="@product.ProductId" style="display:inline">
+                            <button type="submit" class="btn btn-link" onclick="return confirmDelete()">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+             }
+        </tbody>
+    </table>
+}
+
+    <br />
+    <a class="btn btn-primary" asp-controller="products" asp-action="add">Ajouter</a>
+    
+
+    @section Scripts{
+        <script>
+            function confirmDelete(){
+                return confirm("Etes-vous sur de cette Action?")
+            }
+        </script>
+    }
+  
