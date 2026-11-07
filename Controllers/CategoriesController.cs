@@ -6,19 +6,57 @@ namespace WebAppMMS.Controllers
     public class CategoriesController : Controller
     {
         // GET: CategoriesController
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            return View();
+            var categories = CategoriesRepository.GetCategories();
+            return View(categories);
         }
-    public IActionResult Edit(int? id)
+   public IActionResult Edit(int? id)
     {
-        var category = new Category
-        {
-            CategoryId = id ?? 0
-        };
+        ViewBag.Action = "edit";
+        var category = id.HasValue
+            ? CategoriesRepository.GetCategoryById(id.Value)
+            : new Category();
 
         return View(category);
     }
+
+    [HttpPost]
+    public IActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                CategoriesRepository.UpdateCategory(category.CategoryId, category);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(category);
+        }
+
+    public IActionResult Add()
+        {
+            ViewBag.Action = "Add";
+            return View();
+        }
+    [HttpPost]
+    public IActionResult Add(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                CategoriesRepository.AddCategory(category);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(category);
+            
+        }
+
+        public IActionResult Delete(int categoryId)
+        {
+            CategoriesRepository.DeleteCategory(categoryId);
+            return RedirectToAction(nameof(Index));
+        }
+
        
 
     }
